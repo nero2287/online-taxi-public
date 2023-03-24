@@ -16,4 +16,8 @@ public class VerificationController {
     public JsonResult verification_code(){
         return JsonResult.success().setData(verificationService.RandomNum(6));
     }
+
+    private String test(){
+        return null;
+    }
 }
