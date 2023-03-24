@@ -1,0 +1,11 @@
+server:
+  port: 8010
+
+spring:
+  application:
+    name: passenger
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        service: passenger
