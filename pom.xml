@@ -10,7 +10,8 @@
     <modules>
         <module>api-passenger</module>
         <module>api-common</module>
-        <module>server-verification_code</module>
+        <module>service-verification_code</module>
+        <module>service-passenger-user</module>
     </modules>
 
     <packaging>pom</packaging>
