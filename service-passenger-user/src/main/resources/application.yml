@@ -1,0 +1,10 @@
+server:
+  port: 8030
+
+spring:
+  application:
+    name: passenger-user
+  cloud:
+    nacos:
+      discovery:
+        service: localhost:8848
