@@ -2,12 +2,15 @@ package com.taxi.passenger.bean;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class PassengerUser {
     private int id;
     private String passengerPhone;
     private String passengerName;
-    private String passengerGender;
+    private int passengerGender;
     private int state;
-    private String updateTime;
+    private LocalDateTime updateTime;
+    private LocalDateTime createTime;
 }

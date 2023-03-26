@@ -5,6 +5,4 @@ import org.springframework.stereotype.Service;
 public interface VerificationService {
 
     int RandomNum(int size);
-
-    boolean checkCode();
 }
