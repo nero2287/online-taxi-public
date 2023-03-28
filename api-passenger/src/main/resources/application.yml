@@ -13,3 +13,11 @@ spring:
     host: 192.168.1.22
     port: 6379
     database: 0
+    password: 123456
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+

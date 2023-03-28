@@ -2,6 +2,7 @@ package com.taxi.passenger.service.imple;
 
 import com.taxi.common.api_enum.AccountStatus;
 import com.taxi.common.api_enum.GenderEnum;
+import com.taxi.common.api_enum.TokenEnum;
 import com.taxi.passenger.bean.PassengerUser;
 import com.taxi.passenger.mapper.PassengerUserMapper;
 import com.taxi.passenger.service.PassengerUserService;
@@ -13,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.taxi.common.util.TokenUtil.*;
+
 @Service
 public class PassengerUserServiceImple implements PassengerUserService {
 
@@ -22,7 +25,7 @@ public class PassengerUserServiceImple implements PassengerUserService {
     @Override
     public String registerAndLogin(String passengerPhone) {
         Map<String,Object> map = new HashMap<>();
-        map.put("passengerPhone",passengerPhone);
+        map.put("passenger_phone",passengerPhone);
         //查询数据库
         List<PassengerUser> userList = passengerUserMapper.selectByMap(map);
         if(userList.size()==0){
@@ -33,11 +36,13 @@ public class PassengerUserServiceImple implements PassengerUserService {
             passengerUser.setPassengerGender(GenderEnum.WALMART_BAG.getKey());
             passengerUser.setState(AccountStatus.ACTIVATED.getKey());
             passengerUser.setCreateTime(LocalDateTime.now());
-
+            passengerUser.setUpdateTime(LocalDateTime.now());
             passengerUserMapper.insert(passengerUser);
         }
-
         //登录
-        return null;
+        Map<String,String> tokenMap = new HashMap<>();
+        tokenMap.put(TokenEnum.PASSENGERPHONE.getName(),passengerPhone);
+        String token = createToken(tokenMap);
+        return token;
     }
 }
