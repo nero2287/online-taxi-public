@@ -35,7 +35,7 @@ public class JWTInterceptor implements HandlerInterceptor {
 
         if(!flag){
             PrintWriter out = response.getWriter();
-            out.println(JsonResult.success(message));
+            out.println(JsonResult.error(message));
         }
 
         return flag;
