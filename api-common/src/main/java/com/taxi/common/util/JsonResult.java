@@ -41,7 +41,6 @@ public class JsonResult<T> {
         if(key==null&&!key.equals("")){
             throw new NullPointerException("key值不能为空");
         }
-
         Map<String,Object> map = null;
         Object data = this.getData();
         if(data instanceof HashMap){
@@ -55,7 +54,6 @@ public class JsonResult<T> {
             }
         }
         this.setData(map);
-
         return this;
     }
 

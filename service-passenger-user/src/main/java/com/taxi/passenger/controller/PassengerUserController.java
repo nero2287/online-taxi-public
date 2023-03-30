@@ -1,8 +1,8 @@
 package com.taxi.passenger.controller;
 
+import com.taxi.common.bean.DoubleToken;
 import com.taxi.common.util.JsonResult;
 import com.taxi.passenger.service.PassengerUserService;
-import feign.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +15,7 @@ public class PassengerUserController {
 
     @GetMapping("/user")
     public JsonResult getUser(String passengerPhone){
-        String token = passengerUserService.registerAndLogin(passengerPhone);
-        return JsonResult.success(token);
+        return JsonResult.success(passengerUserService.registerAndLogin(passengerPhone));
     }
 
 }

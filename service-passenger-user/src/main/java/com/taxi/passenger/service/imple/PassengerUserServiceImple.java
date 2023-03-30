@@ -3,6 +3,9 @@ package com.taxi.passenger.service.imple;
 import com.taxi.common.api_enum.AccountStatus;
 import com.taxi.common.api_enum.GenderEnum;
 import com.taxi.common.api_enum.TokenEnum;
+import com.taxi.common.api_enum.TokenIdentify;
+import com.taxi.common.bean.DoubleToken;
+import com.taxi.common.bean.TokenBean;
 import com.taxi.passenger.bean.PassengerUser;
 import com.taxi.passenger.mapper.PassengerUserMapper;
 import com.taxi.passenger.service.PassengerUserService;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.taxi.common.util.TokenUtil.*;
+import static com.taxi.common.util.TokenUtil.createToken;
 
 @Service
 public class PassengerUserServiceImple implements PassengerUserService {
@@ -23,7 +27,7 @@ public class PassengerUserServiceImple implements PassengerUserService {
     private PassengerUserMapper passengerUserMapper;
 
     @Override
-    public String registerAndLogin(String passengerPhone) {
+    public DoubleToken registerAndLogin(String passengerPhone) {
         Map<String,Object> map = new HashMap<>();
         map.put("passenger_phone",passengerPhone);
         //查询数据库
@@ -40,9 +44,9 @@ public class PassengerUserServiceImple implements PassengerUserService {
             passengerUserMapper.insert(passengerUser);
         }
         //登录
-        Map<String,String> tokenMap = new HashMap<>();
-        tokenMap.put(TokenEnum.PASSENGERPHONE.getName(),passengerPhone);
-        String token = createToken(tokenMap);
-        return token;
+        TokenBean tokenBean = new TokenBean();
+        tokenBean.setPassengerPhone(passengerPhone);
+        tokenBean.setIdentify(TokenIdentify.PASSENGER.getCode());
+        return createDoubleToken(tokenBean);
     }
 }

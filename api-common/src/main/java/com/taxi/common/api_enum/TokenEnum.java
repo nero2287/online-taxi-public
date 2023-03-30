@@ -2,7 +2,13 @@ package com.taxi.common.api_enum;
 
 public enum TokenEnum {
 
-    PASSENGERPHONE("passengerPhone")
+    PASSENGERPHONE("passengerPhone"),
+
+    IDENTIFY("identify"),
+
+    TIMESTAMP("timeStamp"),
+
+    TOKENTYPE("tokenType")
 
     ;
 
@@ -14,9 +20,5 @@ public enum TokenEnum {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
