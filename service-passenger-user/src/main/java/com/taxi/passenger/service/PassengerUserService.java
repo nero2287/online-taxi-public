@@ -1,6 +1,7 @@
 package com.taxi.passenger.service;
 
 import com.taxi.common.bean.DoubleToken;
+import com.taxi.passenger.bean.PassengerUser;
 
 public interface PassengerUserService {
 
@@ -10,4 +11,5 @@ public interface PassengerUserService {
      */
     DoubleToken registerAndLogin(String passengerPhone);
 
+    PassengerUser getUserInfo(String passengerPhone);
 }

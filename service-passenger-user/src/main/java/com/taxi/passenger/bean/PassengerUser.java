@@ -10,6 +10,7 @@ public class PassengerUser {
     private String passengerPhone;
     private String passengerName;
     private int passengerGender;
+    private String profilePhoto;
     private int state;
     private LocalDateTime updateTime;
     private LocalDateTime createTime;

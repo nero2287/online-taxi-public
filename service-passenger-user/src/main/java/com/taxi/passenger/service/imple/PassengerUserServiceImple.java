@@ -37,6 +37,7 @@ public class PassengerUserServiceImple implements PassengerUserService {
             PassengerUser passengerUser = new PassengerUser();
             passengerUser.setPassengerPhone(passengerPhone);
             passengerUser.setPassengerName("用户");
+            passengerUser.setProfilePhoto("pic.msb.com");
             passengerUser.setPassengerGender(GenderEnum.WALMART_BAG.getKey());
             passengerUser.setState(AccountStatus.ACTIVATED.getKey());
             passengerUser.setCreateTime(LocalDateTime.now());
@@ -48,5 +49,17 @@ public class PassengerUserServiceImple implements PassengerUserService {
         tokenBean.setPassengerPhone(passengerPhone);
         tokenBean.setIdentify(TokenIdentify.PASSENGER.getCode());
         return createDoubleToken(tokenBean);
+    }
+
+    @Override
+    public PassengerUser getUserInfo(String passengerPhone) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("passenger_phone",passengerPhone);
+        //查询数据库
+        List<PassengerUser> userList = passengerUserMapper.selectByMap(map);
+        if(userList.size()!=0){
+            return userList.get(0);
+        }
+        return null;
     }
 }
