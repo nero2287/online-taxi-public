@@ -3,14 +3,14 @@ server:
 
 spring:
   application:
-    name: passenger
+    name: api-passenger
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
         service: passenger
   redis:
-    host: 192.168.1.22
+    host: 192.168.1.23
     port: 6379
     database: 0
     password: 123456

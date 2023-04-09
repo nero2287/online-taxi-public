@@ -32,7 +32,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         try{
             String redis_access_token = "";
             TokenBean tokenBean = TokenUtil.decodeToken(token);
-            String passengerPhone = tokenBean.getPassengerPhone();
+            String passengerPhone = tokenBean.getPhone();
             int identify = tokenBean.getIdentify();
             if(identify == TokenIdentify.PASSENGER.getCode()){
                 redis_access_token = stringRedisTemplate.opsForValue().get(TokenConstant.PASSENGER_ACCESS_TOKEN_PREFIX+passengerPhone);

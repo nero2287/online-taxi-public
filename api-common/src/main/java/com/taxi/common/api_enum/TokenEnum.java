@@ -1,8 +1,7 @@
 package com.taxi.common.api_enum;
 
 public enum TokenEnum {
-
-    PASSENGERPHONE("passengerPhone"),
+    PHONE("phone"),
 
     IDENTIFY("identify"),
 

@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.taxi.common.util.TokenUtil.*;
-import static com.taxi.common.util.TokenUtil.createToken;
 
 @Service
 public class PassengerUserServiceImple implements PassengerUserService {
@@ -46,7 +45,7 @@ public class PassengerUserServiceImple implements PassengerUserService {
         }
         //登录
         TokenBean tokenBean = new TokenBean();
-        tokenBean.setPassengerPhone(passengerPhone);
+        tokenBean.setPhone(passengerPhone);
         tokenBean.setIdentify(TokenIdentify.PASSENGER.getCode());
         return createDoubleToken(tokenBean);
     }

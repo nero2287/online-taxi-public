@@ -1,4 +1,4 @@
-package com.taix.map.bean;
+package com.taxi.common.bean;
 
 import lombok.Data;
 
@@ -21,4 +21,8 @@ public class Coordinates {
      */
     private String destLatitude;
 
+    /**
+     * 所在城市编号
+     */
+    private String city_code;
 }

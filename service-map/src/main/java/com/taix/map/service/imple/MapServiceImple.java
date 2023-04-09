@@ -2,19 +2,14 @@ package com.taix.map.service.imple;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.taix.map.bean.Coordinates;
-import com.taix.map.bean.MapRoutes;
 import com.taix.map.service.MapService;
+import com.taxi.common.bean.Coordinates;
+import com.taxi.common.bean.MapRoutes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import sun.nio.cs.ext.MacArabic;
-
-import java.math.BigDecimal;
-
 @Service
 public class MapServiceImple implements MapService {
 

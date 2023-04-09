@@ -53,15 +53,15 @@ public class TokenController {
             boolean login_exceed = false;
             if(tokenBean.getIdentify()== TokenIdentify.PASSENGER.getCode()){
                 //从redis获取refreshToken
-                String redis_refresh_token = stringRedisTemplate.opsForValue().get(TokenConstant.PASSENGER_REFRESH_TOKEN_PREFIX+tokenBean.getPassengerPhone());
+                String redis_refresh_token = stringRedisTemplate.opsForValue().get(TokenConstant.PASSENGER_REFRESH_TOKEN_PREFIX+tokenBean.getPhone());
                 if(StringUtils.isBlank(redis_refresh_token)){
                     login_exceed = true;
                 }else{
                     //重新生成双token
                     DoubleToken new_doubleToken = TokenUtil.createDoubleToken(tokenBean);
                     //刷新redis中的token
-                    stringRedisTemplate.opsForValue().set(TokenConstant.PASSENGER_REFRESH_TOKEN_PREFIX+tokenBean.getPassengerPhone(),new_doubleToken.getRefresh_token());
-                    stringRedisTemplate.opsForValue().set(TokenConstant.PASSENGER_ACCESS_TOKEN_PREFIX+tokenBean.getPassengerPhone(),new_doubleToken.getAccess_token());
+                    stringRedisTemplate.opsForValue().set(TokenConstant.PASSENGER_REFRESH_TOKEN_PREFIX+tokenBean.getPhone(),new_doubleToken.getRefresh_token());
+                    stringRedisTemplate.opsForValue().set(TokenConstant.PASSENGER_ACCESS_TOKEN_PREFIX+tokenBean.getPhone(),new_doubleToken.getAccess_token());
                     return JsonResult.success(new_doubleToken);
                 }
             }

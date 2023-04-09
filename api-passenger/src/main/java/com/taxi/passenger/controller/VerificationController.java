@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-public class ApiPassengerController {
+public class VerificationController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
@@ -90,9 +90,9 @@ public class ApiPassengerController {
             DoubleToken doubleToken = new ObjectMapper().convertValue(passengerUserService.checkUser(passengerPhone).getData(),DoubleToken.class);
             //将token存入redis
             stringRedisTemplate.opsForValue().set(TokenConstant.PASSENGER_ACCESS_TOKEN_PREFIX+passengerPhone,
-                    doubleToken.getAccess_token(),TokenConstant.PASSENGER_ACCESS_EXCEED,TimeUnit.DAYS);
+                    doubleToken.getAccess_token(),TokenConstant.ACCESS_EXCEED,TimeUnit.DAYS);
             stringRedisTemplate.opsForValue().set(TokenConstant.PASSENGER_REFRESH_TOKEN_PREFIX+passengerPhone,
-                    doubleToken.getRefresh_token(),TokenConstant.PASSENGER_REFRESH_EXCEED,TimeUnit.DAYS);
+                    doubleToken.getRefresh_token(),TokenConstant.REFRESH_EXCEED,TimeUnit.DAYS);
             //删除redis中的验证码
             stringRedisTemplate.delete(redisKeyList);
             return JsonResult.success().put("token",doubleToken);
@@ -103,7 +103,7 @@ public class ApiPassengerController {
     }
 
     /**
-     * 验证token
+     * 测试token
      */
     @GetMapping("/get")
     public JsonResult accessToken(){

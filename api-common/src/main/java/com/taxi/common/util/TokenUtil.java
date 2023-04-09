@@ -9,6 +9,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.taxi.common.api_enum.TokenEnum;
+import com.taxi.common.api_enum.TokenIdentify;
 import com.taxi.common.bean.DoubleToken;
 import com.taxi.common.bean.TokenBean;
 import com.taxi.common.bean.TokenConstant;
@@ -36,16 +37,21 @@ public class TokenUtil {
 
         //JWT生成器
         JWTCreator.Builder builder = JWT.create();
-
-        builder.withClaim(TokenEnum.PASSENGERPHONE.getName(),tokenBean.getPassengerPhone());
+        builder.withClaim(TokenEnum.PHONE.getName(),tokenBean.getPhone());
         builder.withClaim(TokenEnum.IDENTIFY.getName(),tokenBean.getIdentify());
         builder.withClaim(TokenEnum.TOKENTYPE.getName(),tokenType);
         builder.withClaim(TokenEnum.TIMESTAMP.getName(),Calendar.getInstance().getTime().toString());
+
         //整合过期时间
 //        builder.withExpiresAt(date);
         return builder.sign(Algorithm.HMAC256(SIGN));
     }
 
+    /**
+     *
+     * @param tokenBean
+     * @return
+     */
     public static DoubleToken createDoubleToken(TokenBean tokenBean){
         DoubleToken doubleToken = new DoubleToken();
         doubleToken.setAccess_token(createToken(tokenBean,"access_token"));
@@ -53,11 +59,17 @@ public class TokenUtil {
         return doubleToken;
     }
 
-    public static TokenBean decodeToken(String token){
+    public static TokenBean decodeToken(String token) throws SignatureVerificationException,TokenExpiredException,AlgorithmMismatchException{
         DecodedJWT verify = JWT.require(Algorithm.HMAC256(SIGN)).build().verify(token);
+        int identify = verify.getClaim(TokenEnum.IDENTIFY.getName()).asInt();
         TokenBean tokenBean = new TokenBean();
-        tokenBean.setIdentify(verify.getClaim(TokenEnum.IDENTIFY.getName()).asInt());
-        tokenBean.setPassengerPhone(verify.getClaim(TokenEnum.PASSENGERPHONE.getName()).asString());
+        if(identify == TokenIdentify.PASSENGER.getCode()){
+            tokenBean.setPhone(verify.getClaim(TokenEnum.PHONE.getName()).asString());
+        }else if(identify == TokenIdentify.DRIVER.getCode()){
+            tokenBean.setPhone(verify.getClaim(TokenEnum.PHONE.getName()).asString());
+        }
+        tokenBean.setIdentify(identify);
+
         return tokenBean;
     }
 }

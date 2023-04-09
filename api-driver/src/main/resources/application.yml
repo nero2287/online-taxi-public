@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        service: api-driver
+        server-addr: localhost:8848
+  redis:
+    host: 192.168.1.23
+    port: 6379
+    database: 0
+    password: 123456

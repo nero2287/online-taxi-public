@@ -13,6 +13,10 @@
         <module>service-verification_code</module>
         <module>service-passenger-user</module>
         <module>service-map</module>
+        <module>service-price</module>
+        <module>service-driver-user</module>
+        <module>api-manager</module>
+        <module>api-driver</module>
     </modules>
 
     <packaging>pom</packaging>
