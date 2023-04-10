@@ -2,8 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/api-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-driver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-manager/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-passenger/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-driver-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-map/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-passenger-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-price/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-verification_code/src/main/java" charset="UTF-8" />
   </component>
 </project>

@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Data
 @Accessors(chain = true)
-public class JsonResult<T> {
+public class JsonResult {
 
     private int code;
     private String message;
@@ -19,7 +19,7 @@ public class JsonResult<T> {
         return new JsonResult().setCode(ResponseStatusEnum.TIP.getCode()).setMessage(ResponseStatusEnum.TIP.getMessage());
     }
 
-    public static <T> JsonResult tip(T obj){
+    public static JsonResult tip(Object obj){
         return tip().setData(obj);
     }
 
@@ -27,7 +27,7 @@ public class JsonResult<T> {
         return new JsonResult().setCode(ResponseStatusEnum.SUCCESS.getCode()).setMessage(ResponseStatusEnum.SUCCESS.getMessage());
     }
 
-    public static <T> JsonResult success(T obj){
+    public static JsonResult success(Object obj){
         return success().setData(obj);
     }
 
@@ -41,7 +41,6 @@ public class JsonResult<T> {
         if(key==null&&!key.equals("")){
             throw new NullPointerException("key值不能为空");
         }
-
         Map<String,Object> map = null;
         Object data = this.getData();
         if(data instanceof HashMap){
@@ -55,7 +54,6 @@ public class JsonResult<T> {
             }
         }
         this.setData(map);
-
         return this;
     }
 
@@ -63,7 +61,7 @@ public class JsonResult<T> {
        return new JsonResult().setCode(ResponseStatusEnum.FAIL.getCode()).setMessage(ResponseStatusEnum.FAIL.getMessage());
     }
 
-    public static <T> JsonResult fail(T obj){
+    public static JsonResult fail(Object obj){
         return fail().setData(obj);
     }
 
@@ -71,10 +69,7 @@ public class JsonResult<T> {
         return new JsonResult().setCode(ResponseStatusEnum.ERROR.getCode()).setMessage(ResponseStatusEnum.ERROR.getMessage());
     }
 
-    public static <T> JsonResult error(T obj){
+    public static JsonResult error(Object obj){
         return error().setData(obj);
     }
-
-
-
 }

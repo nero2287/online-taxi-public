@@ -1,0 +1,8 @@
+api-passenger:8010
+service-verification-code:8020
+service-passenger-user:8030
+service-map:8040
+service-price:8050
+service-driver-user:8060
+api-manger:8070
+api-driver:8080

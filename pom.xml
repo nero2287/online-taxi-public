@@ -12,6 +12,11 @@
         <module>api-common</module>
         <module>service-verification_code</module>
         <module>service-passenger-user</module>
+        <module>service-map</module>
+        <module>service-price</module>
+        <module>service-driver-user</module>
+        <module>api-manager</module>
+        <module>api-driver</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -73,6 +78,7 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
             <version>1.8.2</version>
         </dependency>
+        <!-- jwt加密 -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>

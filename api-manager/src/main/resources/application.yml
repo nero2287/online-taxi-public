@@ -1,0 +1,16 @@
+server:
+  port: 8070
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        service: localhost:8848
+  application:
+    name: api-manager
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000

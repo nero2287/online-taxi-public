@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/api-dictionary/pom.xml" />
         <option value="$PROJECT_DIR$/api-passsenger-user/pom.xml" />
       </set>
     </option>
