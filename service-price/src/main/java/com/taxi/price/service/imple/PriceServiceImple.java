@@ -1,8 +1,10 @@
 package com.taxi.price.service.imple;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.taxi.common.price.bean.PriceRole;
 import com.taxi.common.util.BigDecimalUtil;
-import com.taxi.price.bean.PriceRole;
 import com.taxi.price.mapper.PriceMapper;
 import com.taxi.price.remote.MapService;
 import com.taxi.price.service.PriceService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,5 +63,37 @@ public class PriceServiceImple implements PriceService {
 
         //时长价+公里价
         return BigDecimalUtil.add(price,time_price);
+    }
+
+    @Override
+    public boolean updatePriceRole(PriceRole priceRole) {
+        return addPriceRole(priceRole);
+    }
+
+    @Override
+    public boolean addPriceRole(PriceRole priceRole) {
+        String fareType = priceRole.getCityCode()+"&"+priceRole.getVehicleType();
+        priceRole.setFareType(fareType);
+        QueryWrapper<PriceRole> priceRoleQueryWrapper = new QueryWrapper<>();
+        priceRoleQueryWrapper.eq("city_code",priceRole.getCityCode());
+        priceRoleQueryWrapper.eq("vehicle_type",priceRole.getVehicleType());
+        priceRoleQueryWrapper.orderByDesc("fare_version");
+        //查询是否存在计价规则
+        List<PriceRole> priceRoleList = priceMapper.selectList(priceRoleQueryWrapper);
+        if(priceRoleList.size()>0){
+            PriceRole MaxPriceRole =priceRoleList.get(0);
+            priceRole.setFareVersion(MaxPriceRole.getFareVersion()+1);
+        }
+        return priceMapper.insert(priceRole)>0;
+    }
+
+    @Override
+    public List<PriceRole> getList() {
+        QueryWrapper<PriceRole> queryWrapper = new QueryWrapper<>();
+        List<String> column = new ArrayList<>();
+        column.add("vehicle_type");
+        column.add("fare_version");
+        queryWrapper.orderByAsc(column);
+        return priceMapper.selectList(queryWrapper);
     }
 }
