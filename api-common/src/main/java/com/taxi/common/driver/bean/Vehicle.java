@@ -13,6 +13,10 @@ public class Vehicle {
     private String address;
     //车牌号
     private String vehicleNo;
+    //服务端id
+    private int serviceId;
+    //终端名称
+    private String entityName;
     //车牌颜色
     private int plateColor;
     //载客量
@@ -52,7 +56,7 @@ public class Vehicle {
     //车辆年审状态
     private int checkState;
     //发票打印设备序列号
-    private String feePrintid;
+    private String feePrintId;
     //卫星定位装置品牌
     private String gpsBrand;
     //卫星定位装置型号
