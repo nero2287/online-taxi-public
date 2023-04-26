@@ -8,6 +8,7 @@ spring:
         service: localhost:8848
   application:
     name: api-manager
+
 feign:
   client:
     config:

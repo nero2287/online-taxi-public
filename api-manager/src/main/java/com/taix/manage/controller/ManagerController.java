@@ -6,6 +6,7 @@ import com.taxi.common.driver.bean.Vehicle;
 import com.taxi.common.driver.bean.VehicleBinding;
 import com.taxi.common.driver.driverEnum.BindingStates;
 import com.taxi.common.util.JsonResult;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,9 @@ public class ManagerController {
 
     @PostMapping("/vehicle")
     public JsonResult addVehicle(@RequestBody Vehicle vehicle){
+        if(StringUtils.isBlank(vehicle.getVehicleNo())){
+            return JsonResult.fail().setData("车牌号不能为空");
+        }
         return driverUserService.vehicle(vehicle);
     }
 

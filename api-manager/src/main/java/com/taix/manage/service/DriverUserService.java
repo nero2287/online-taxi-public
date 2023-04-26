@@ -19,6 +19,6 @@ public interface DriverUserService {
     JsonResult updateUser(@RequestBody Driver driver);
     @PostMapping("/vehicle/info")
     JsonResult vehicle(@RequestBody Vehicle vehicle);
-    @PutMapping("/vehicle/bind")
+    @PostMapping("/vehicle/bind")
     JsonResult binding(@RequestBody VehicleBinding vehicleBinding);
 }
